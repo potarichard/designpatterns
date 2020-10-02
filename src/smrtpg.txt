@@ -1,0 +1,72 @@
+
+strategy -  we want to contruct object with dinamically chooseable behaviors,  (similar to composite pattern just better ?)
+            instead of a common interface and many different implementation to combine a desired object with the right implementation (its impossible anyway)
+            right way: to have interfaces as fields, and with dependecy injection we choose/inject the desired implementations
+            
+observer -  subsciber/publisher aka observer/subject   instead of the observers polling the subject if it has changed
+            right way: the observers can register to the subject (subscribing) and when the subject changes it notifies the observers
+            
+decorator - we want to embed a base component into a decorator to have new behaviors, attributes, then the decorated component again can be embedded into 
+            another decorator, aka we wrap a component with a decorator than again and again. The decorators must have reference to the
+            embedded component, so it can call the methods recursively.
+            
+factory -   create objects (with a shared interface) in runtime based on some logic, and also the factory is just an interface, can have
+            different implementation, so it can create objects based on a different logic.
+            
+command -   we have a Invoker and a Receiver, but we want to encapsulate the Command between them. The invoker have some command interface fields
+            that we dependency inject through the contructor (like strategy pattern), and the method that it has invokes the desired command (execute() / undo())
+            The command have reference to a Receiver and the receiver should have the right methods to react to each command ?!.
+            Still didnt had any good example for it, never used it.
+            
+adapter -   we have a "well known" interface and can call its methods, then a new interface come in the picture with different but similar (proxy somewhat similar)
+            behaviors, but we want to treat it as usual, so we need an adapter between the our usual way, and the new/different interface.
+            So the adapter makes the new interface compatibile with the current (just assigning the different behavior to the know behavior.
+            
+facade  -   very easy, just hide the complex logic behind easy implementation, it comes naturally with clean code and OOP. (we break down complex
+            methods to smaller ones anyway). (like a very simple object created by the factory...)
+            
+proxy  -    we want to call methods on an object, but we want to controll the access to it, so we call a proxy, and the proxy calls the
+            real object with safe way/access, also caching is a reason to use proxy. (example a db call is going trough a proxy, if that 
+            reasource is cached before it doesnot call the db, just returns the cache.) similar to decorator in a way that it adds additional behavior, or similar 
+            to adapter but proxy is for a different reason (safe,access,cache). Proxy acts as if it was the original object we want to interact
+            (follows the same interface)
+            
+bridge -    problem is: we have an interface (ex: view) that has a interface field (ex resource), views and resource has
+            some implementation, but we dont want to force an implementation to use all the abstraction that it dont need.
+            So the bridge pattern was explaind above, this solves this issue, so we DECOUPLE THE ABSTRACTION FROM ITS IMPLEMENTATION
+            tHE WRONG WAY IS: we combine each view with each resource so we can deal with any combination, so we create 
+            a lot of extra class which is bad, and the combination drasticly increase with the new views and resources. We would end up with a lot of duplicate code.
+       
+template -  abstract class have a template method, and int that method some points, there are abstract method calls
+            those abstract methods must be implementetd in the concrete classes. Its like strategy, but it has fix (final)
+            beharviors, and at some points (abstract method calls) we can specify the behavior in the concrete classes.
+            
+composite - it is used when tree hierarchy can be benefitial.
+
+
+iterator -  just implement iterator, so the class can be itereated in the abstract way ex Myclass myobj; while(myobj.hasnext()) {item = myobj.next()
+     
+
+state   -   goal is to build a state machine. The object do different things based on what state it is in. STATE and EVENT
+            are the main parts of it. The events may change the state or may stay the same state. Without the pattern there can
+            be lots of duplicate code, and lots of combinations of states and conditions.
+            The object alter its behavior when the state change, it looks like the object changed its class.
+            The goal of the pattern is to replace conditions, with polymorphism.
+            
+            
+            
+                                            What are worth ?
+                                            
+    Tier 1
+            strategy, observer, factory, facade, builder, singleton
+    
+    Tier 2  
+            decorator, adapter, proxy, bridge, composite, nullobject
+            
+    Tier 3
+            command, template, iterator, state
+            
+    Tier 4
+            flyweight, interpreter, mediator, memento,  visitor                                        
+            
+            
